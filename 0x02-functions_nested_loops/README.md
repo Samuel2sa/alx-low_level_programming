@@ -32,7 +32,7 @@ working in the C language. The specific list of projects contained follows:
 
 ## Author 🏴✒️
 
-* __Samuel Sholaye Tesfaye__ <[Samuel Sholaye](https://github.com/SamuelSholaye)>
+* __Samuel Sholaye Tesfaye__ <[Samuel Sholaye](https://github.com/Samuel2sa/alx-low_level_programming/tree/main/0x02-functions_nested_loops)>
 
 ## Acknowledgements 🙏:
 
