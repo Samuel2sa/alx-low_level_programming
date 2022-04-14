@@ -1,27 +1,36 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_square - prints a square
- * @size: the size of the square
+ * main - prints the numbers from 1 to 100, followed by a new line
+ * but for multiples of three prints Fizz instead of the number
+ * and for the multiples of five prints Buzz
+ * Return: Always 0 (Success)
  */
-
-void print_square(int size)
+int main(void)
 {
-	int x, y;
+	int i;
 
-	if (size > 0)
+	for (i = 1; i <= 100; i++)
 	{
-		for (x = 0; x < size; x++)
+		if (i % 3 == 0 && i % 5 != 0)
 		{
-			for (y = 0; y < size; y++)
-			{
-				_putchar(35);
-			}
-			_putchar(10);
+			printf(" Fizz");
+		} else if (i % 5 == 0 && i % 3 != 0)
+		{
+			printf(" Buzz");
+		} else if (i % 3 == 0 && i % 5 == 0)
+		{
+			printf(" FizzBuzz");
+		} else if (i == 1)
+		{
+			printf("%d", i);
+		} else
+		{
+			printf(" %d", i);
 		}
 	}
-	else
-	{
-		_putchar(10);
-	}
+	printf("\n");
+
+	return (0);
 }
