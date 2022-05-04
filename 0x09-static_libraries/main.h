@@ -1,5 +1,3 @@
-s (23 sloc)  700 Bytes
-   
 #ifndef MAIN_H
 #define MAIN_H
 int _putchar(char c);
