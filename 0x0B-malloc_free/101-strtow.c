@@ -1,84 +1,91 @@
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-/**
- * _wcount - counts number of words
- * @sw: string
- *
- * Return: int
- */
-int _wcount(char *sw)
-{
-	int l, wc;
+#include "holberton.h"
 
-	l = 0, wc = 0;
-	if (*(sw + l) == ' ')
-		l++;
-	while (*(sw + l))
-	{
-		if (*(sw + l) == ' ' && *(sw + l - 1) != ' ')
-			wc++;
-		if (*(sw + l) != ' '  && *(sw + l + 1) == 0)
-			wc++;
-		l++;
-	}
-	return (wc);
-}
 /**
- * _trspace - Moves adress to remove trailig whitespaces
- * @st: string
- *
- * Return: Pointer
- */
-char *_trspace(char *st)
-{
-	while (*st == ' ')
-		st++;
-	return (st);
-}
-/**
- * strtow - splits a string into words
- * @str: string
- *
- * Return: Double Pointer
- */
-char **strtow(char *str)
-{
-	char **s, *ts;
-	int l, l2, wc, i, j, fr, k;
+ * _puts - prints a string, followed by a new line,
+ * @str: pointer to the string to print
+ * Return: void
+*/
 
-	if (str == NULL || *str == 0)
-		return (0);
-	fr = 0;
-	wc = _wcount(str);
-	if (wc == 0)
-		return (0);
-	s = malloc((wc + 1) * sizeof(char *));
-	if (s == 0)
-		return (0);
-	ts = _trspace(str);
-	for (i = 0; i < wc; i++)
+
+void _puts(char *str)
+{
+int i = 0;
+while (str[i])
+{
+	_putchar(str[i]);
+	i++;
+}
+
+}
+
+/**
+ * _atoi - convert a string to an integer.
+ * @s: char type string
+ * Return: integer converted
+ */
+
+int _atoi(const char *s)
+{
+    int sign = 1;
+	unsigned long int resp = 0, firstNum, i;
+
+	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
 	{
-		l = 0;
-		while (*(ts + l) != ' ' && *(ts + l) != 0)
-			l++;
-		s[i] = malloc((l + 1) * sizeof(char));
-		if (s[i] == 0)
+		if (s[firstNum] == '-')
 		{
-			fr = 1;
-			break;
+			sign *= -1;
 		}
-		for (j = 0, l2 = 0; l2 < l; l2++, j++)
-			s[i][j] = *(ts + l2);
-		s[i][j] = '\0';
-		ts = _trspace(ts + l);
 	}
-	s[i] = NULL;
-	if (fr == 1)
+
+	for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
 	{
-		for (k = 0; k <= i; k++)
-			free(s[k]);
-		free(s);
+		resp *= 10;
+		resp += (s[i] - 48);
 	}
-	return (s);
+
+	return (sign * resp);
+}
+
+/**
+ * print_int - prints an integer.
+ * @n: int
+ * Return: 0
+ */
+
+void print_int(unsigned long int n)
+{
+
+unsigned  long int divisor = 1, i, resp;
+
+for (i = 0; n / divisor > 9; i++, divisor *= 10)
+;
+
+for (; divisor >= 1; n %= divisor, divisor /= 10)
+{
+	resp = n / divisor;
+	_putchar('0' + resp);
+}
+
+}
+
+/**
+ * main - print the result of the multiplication, followed by a new line
+ * @argc: int
+ * @argv: list
+ * Return: 0
+ */
+
+int main(int argc, char const *argv[])
+{
+(void)argc;
+
+if (argc != 3)
+{
+	_puts("Error ");
+	exit(98);
+}
+print_int(_atoi(argv[1]) * _atoi(argv[2]));
+_putchar('\n');
+
+return (0);
 }
